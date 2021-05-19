@@ -1,0 +1,101 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  transition: background-color 2000ms linear;
+}
+
+button {
+  opacity: 0;
+  margin: 50px;
+  min-width: 150px;
+  min-height: 150px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  border: none;
+  border-radius: 50%;
+  font-family: 'Indie Flower', cursive;
+  background-color: rgba(255, 0, 191, 1);
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 0 0 0 rgba(255, 0, 191, 1);
+  animation: pulse 3s infinite;
+  @keyframes pulse {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(255, 0, 191, 0.7);
+    }
+
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 10px rgba(255, 0, 191, 0);
+    }
+
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(255, 0, 191, 0);
+    }
+  }
+
+  transition: opacity 1500ms linear, transform 500ms ease, filter 1500ms ease;
+
+  &[data-action='start'] {
+    color: #fff;
+
+    &:hover:not(:disabled) {
+      transform: scale(1.2);
+    }
+
+    &:disabled {
+      animation-duration: 0s;
+      filter: opacity(50%) brightness(0.4);
+      cursor: auto;
+    }
+  }
+
+  &[data-action='stop'] {
+    color: #fff;
+    animation-duration: 0s;
+
+    &:hover:not(:disabled) {
+      transform: scale(1.2);
+    }
+
+    &:disabled {
+      animation-duration: 0s;
+      filter: opacity(50%);
+      cursor: auto;
+    }
+  }
+}
+
+button[data-action='start']:after {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button[data-action='stop']:after {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes slidebg {
+  to {
+    background-position: 20vw;
+  }
+}
